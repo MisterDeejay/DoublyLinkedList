@@ -74,7 +74,19 @@ public class DList2 {
    *  insertFront() inserts an item at the front of a DList2.
    */
   public void insertFront(int i) {
-    // Your solution here.
+    DListNode2 node = new DListNode2(i);
+    if (size == 0) {
+      head.prev = node;
+      head.next = node;
+      node.next = head;
+      node.prev = head;
+    } else {
+      head.next = node;
+      head.next.prev = head;
+      head.prev.prev = node;
+      head.next.next = head.prev;
+    }
+    size++;
   }
 
   /**
@@ -83,6 +95,16 @@ public class DList2 {
    */
   public void removeFront() {
     // Your solution here.
+    if (size == 0) {
+      return;
+    } else if (size == 1) {
+      head.next = head;
+      head.prev = head;
+    } else {
+      head.next = head.next.next;
+      head.next.prev = head;
+    }
+    size--;
   }
 
   /**
